@@ -1,0 +1,619 @@
+{% extends 'static.html' %} {% block title %} HOME {% endblock title %} {% block body %}
+<link rel="stylesheet" href=" {{ url_for('static', filename='css/home.css') }} ">
+<script src=" {{ url_for('static', filename='js/home.js') }} "></script>
+<div class="container-fluid" id="cont_f">
+    <!-- -------------left side bar --------------- -->
+
+
+    <div class="side_left_div">
+        <div class="side_left_div_content" style="display:grid;">
+
+            <button style="border:none; background: transparent; padding: 0;" onclick="home()">
+                <div class="menu" id="menu1">
+                    <div class="card-body ">
+                        <i class="fas fa-home"></i>
+                        <h5 class="card-text " id="home_text">HOME</h5>
+                    </div>
+                </div>
+            </button>
+
+            <button style="border:none; background: transparent; padding: 0;" onclick="toggle_(middle_section,middle_section_card)">
+                <div class="menu" id="menu2">
+                    <div class="card-body">
+                        <i class="fab fa-cc-visa"></i>
+                        <h5 class="card-text" id="card_text">CARDS</h5>
+
+                    </div>
+                </div>
+            </button>
+
+
+            <button style="border:none; background: transparent; padding: 0;">
+                <div class="menu_toggle" id="menu_toggle">
+                    <!--  -->
+                    <div class="card-body">
+                        <i class="fas fa-language"></i>
+                        <h5 class="card-title" id="language_text">LANGUAGE</h5>
+
+                    </div>
+                    <div class="toggle" id="toggle" onclick="toggle()">
+
+                    </div>
+
+                    <li style="--i:0"></li>
+                    <li style="--i:1" > <a onclick="change_language('india');"><img src="{{ url_for('static', filename='image/hindi.png') }}" alt="" srcset="" style="transform:rotate(-90deg);height: 50px;width: 50px; border-radius: 50%; "></li></a>
+                    <li style="--i:2"> <a onclick="change_language('english');"><img src="{{ url_for('static', filename='image/english.jpg') }}" alt="" srcset="" style="transform:rotate(180deg); height: 50px;width: 50px; border-radius: 50%; "></li></a>
+                    <li style="--i:3"> <a onclick="change_language('tamil');"><img src="{{ url_for('static', filename='image/tamil.jpg') }}" alt="" srcset="" style="transform:rotate(90deg); height: 50px;width: 50px; border-radius: 50%; "></li></a>
+                    <!-- <li style="--i:4"> <a href=""><i class="fas fa-om"></i></li></a> -->
+
+                </div>
+            </button>
+
+
+            <button style="border:none; background: transparent; padding: 0;">
+                <div class="menu"id="menu4">
+                    <div class="card-body">
+                        <i class="far fa-arrow-alt-to-left"></i>
+                        <h5 class="card-title" id="back_text">BACK</h5>
+
+                    </div>
+                </div>
+            </button>
+
+        </div>
+    </div>
+
+<!-- -------------main content  --------------- -->
+    <div class="main">
+    <div class="head_section">
+        <div class="balance">
+            <div class="user">
+                <h3 style="color:whitesmoke;" id="welcome_text">Welcome {{query.full_name}} :)</h3>
+            </div>
+            <div class="bal" style="float:right; margin-top: 5px;">
+                <h5 style="color:whitesmoke;" id="balance_text">Your balance :- {{query.account_balance}}.00$</h5>
+            </div>
+        </div>
+
+        <hr style="color:white; width:100%">
+        <p style="color:white; margin-top:-1rem; margin-left:.5rem;">What would like to do today?</p>
+
+    </div>
+
+    <!-- -------------middle section home content  --------------- -->
+    <div class="middle_section" id="middle_section" style="display: grid;left: 12%; visibility: visible;">
+        <div class="row">
+            <div class="col-sm-6 mb-5">
+                <div class="card" onclick="toggle_(middle_section,middle_section_withdraw)">
+                    <div class="card-body" style="display: flex;">
+                        <i class="fas fa-wallet" style="color:aqua;"></i>
+                        <h5 class="card-title" id="withdraw_text">Withdraw Cash</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card" onclick="toggle_(middle_section,middle_section_fund_transfer)">
+                    <div class="card-body" style="display: flex;">
+                        <i class="fas fa-envelope-open-dollar" style="color:blueviolet;"></i>
+                        <h5 class="card-title" id="transfer_text">Transfer Funds</h5>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-5">
+                <div class="card" onclick="toggle_(middle_section,middle_section_cash_deposit)">
+                    <div class="card-body" style="display: flex;">
+                        <i class="fas fa-sack-dollar" style="color:rgb(0, 90, 23);"></i>
+                        <h5 class="card-title" id="cash_text">Cash Deposit</h5>
+
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+
+                <div class="card" onclick="toggle_(middle_section,middle_section_mini_statement)">
+                    <div class="card-body" style="display: flex;">
+                        <i class="fas fa-file-alt"></i>
+                        <h5 class="card-title" id="mini_text">Mini Statement</h5>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div class="card" onclick="toggle_(middle_section,middle_section_account)">
+                    <div class="card-body" style="display: flex;">
+                        <i class="far fa-user-circle" style="font-size:30px; color:aqua;"></i>
+                        <h5 class="card-title" id="account_text">Your Account</h5>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6 mb-5">
+                <div class="card" onclick="toggle_(middle_section,middle_section_pin_change)">
+                    <div class="card-body" style="display: flex;">
+                        <i class="fas fa-lock"></i>
+                        <h5 class="card-title" id="pin_text">Change PIN</h5>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- -------------------- card section ------------------- -->
+    <div class="middle_section_card" id="middle_section_card">
+        <div class="emp-profile2">
+            <h5 class="text-center" style="color:white; font-weight: bold;" id="card_text">Your cards</h5>
+            <hr>
+
+            <div class="atm_card">
+                <div class="card__front card__part">
+                    <img class="card__front-square card__square" src="{{ url_for('static', filename='image/chip.png') }}">
+                    <img class="card__front-logo card__logo" src="{{ url_for('static', filename='image/2000px-MasterCard_Logo.svg.png') }}">
+                    <p class="card_numer">{{query.atm_number}}</p>
+                    <div class="card__space-75">
+                        <span class="card__label">Card holder</span>
+                        <p class="card__info">{{query.full_name}}</p>
+                    </div>
+                    <div class="card__space-25">
+                        <span class="card__label">Expires</span>
+                        <p class="card__info">10/25</p>
+                    </div>
+                </div>
+
+                <div class="card__back card__part">
+                    <div class="card__black-line"></div>
+                    <div class="card__back-content">
+                        <div class="card__secret">
+                            <p class="card__secret--last">{{query.cvv}}</p>
+                        </div>
+                        <img class="card__back-square card__square" src="https://image.ibb.co/cZeFjx/little_square.png">
+                        <img class="card__back-logo card__logo" src="{{ url_for('static', filename='image/2000px-MasterCard_Logo.svg.png') }}">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!-- ------------- withdraw  --------------- -->
+    <div class="middle_section_withdraw" id="middle_section_withdraw" style="visibility:hidden;">
+        <form action="/withdraw" class="withdraw_form" method="POST">
+            <div class="row" style="padding: 4% 15%; color: white; ">
+                <div class="col-md-12 text-center">
+                    <h3 style="color:white; font-size:30px bold;">Withdraw</h3>
+                </div>
+                <div class="col-md-12 mt-3">
+                    <label for="inputAddress" class="form-label">Card Holder Name</label>
+                    <input type="text" class="form-control" id="inputAddress" placeholder="" value="{{query.full_name}}" readonly>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="inputEmail4" class="form-label">Card Number</label>
+                    <input type="text" name="card_no" class="form-control" id="" value="{{query.atm_number}}" readonly>
+                </div>
+                <div class="col-md-2 mt-3">
+                    <label for="inputPassword4" class="form-label">CVV</label>
+                    <input type="text" class="form-control" id="" value="{{query.cvv}}" readonly>
+                </div>
+                <div class="col-md-4 mt-3">
+                    <label for="inputPassword4" class="form-label">Expiry Date</label>
+                    <input type="text" class="form-control" id="" value="{{query.expiry_date}}" readonly>
+                </div>
+                <div class="col-md-6 mt-3">
+                    <label for="inputEmail4" class="form-label">Amounts</label>
+                    <input type="text" name="withdrawable_ammount" class="form-control" id="">
+                </div>
+                <div class="col-md-3 mt-3">
+                    <label for="inputPassword4" class="form-label">PIN</label>
+                    <input type="text" name="atm_pin" class="form-control" id="">
+                </div>
+                <div class="col-md-3 mt-3">
+                    <label for="inputPassword4" class="form-label">Confirm PIN</label>
+                    <input type="text" class="form-control" id="">
+                </div>
+                <div class="col-md-12 text-center mt-5">
+                    <button type="submit" class="btn btn-primary">Withdraw Ammount</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- --------------- mini statement ------------- -->
+    <div class="middle_section_mini_statement" id="middle_section_mini_statement" style="visibility:hidden;">
+        <div class="emp-profile2">
+            <h5 class="text-center" style="color:white; font-weight: bold;">Mini Statement</h5>
+            <div class="print-container">
+                <table class="table">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">Sno</th>
+                            <th scope="col">Date</th>
+                            <th scope="col">Debit/Credit</th>
+                            <th scope="col">Debited Ammount</th>
+                            <th scope="col">Credited Ammount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for tranjection in mini %}
+                        <tr style="color:white;">
+                            <td>{{loop.index}}</td>
+                            <td>{{tranjection.tranjection_date}}</td>
+                            <td>{{tranjection.Status}}</td>
+                            <td>{{tranjection.debit_ammount}}</td>
+                            <td>{{tranjection.credit_ammount}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
+            <center> <input type="button" value="Print Statement" onClick="window.print()" style="bottom:0;"></center>
+        </div>
+    </div>
+    <!-- --------------- Cash Deposit ------------- -->
+    <div class="middle_section_mini_statement" id="middle_section_cash_deposit" style="visibility:hidden;">
+        <div class="emp-profile2">
+            <form class="fund_transfer_form" action="/deposit" method="POST">
+                <div class="row mt-0" style="padding: 0% 15%; color: white;">
+                    <div class="col-md-12 text-center">
+                        <h3 style="color:white; font-size:30px bold;">Cash Deposit</h3>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="inputAddress" class="form-label">Account Number</label>
+                        <input type="text" class="form-control" name="account_number" id="" placeholder="" value="{{query.account_number}}" readonly>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="inputAddress" class="form-label">Account Holder Name</label>
+                        <input type="text" class="form-control" id="" placeholder="" value="{{query.full_name}}" } readonly>
+                    </div>
+
+                    <div class="col-md-3">
+
+                    </div>
+
+                    <div class="col-md-6 text-center mt-3">
+                        <label for="inputEmail4" class="form-label">Amounts</label>
+                        <input type="text" class="form-control" name="deposit_ammount" id="inputEmail4">
+                    </div>
+                    <div class="col-md-3">
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3 mt-2 text-center">
+                        <label for="inputPassword4" class="form-label">PIN</label>
+                        <input type="number" class="form-control" id="" name="atm_pin" style="appearance: none;">
+                    </div>
+                    <div class="col-md-3 mt-2 text-center">
+                        <label for="inputPassword4" class="form-label">Confirm PIN</label>
+                        <input type="number" class="form-control" id="inputPassword4">
+                    </div>
+                    <div class="col-md-12 text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Deposit Ammount</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- --------------- PIN Change ------------- -->
+    <div class="middle_section_withdraw" id="middle_section_pin_change" style="visibility:hidden;">
+        <div class="emp-profile2">
+            <form action="/update_pin" class="fund_transfer_form" method="POST">
+                <div class="row mt-0" style="padding: 0% 15%; color: white;">
+                    <div class="col-md-12 text-center">
+                        <h3 style="color:white; font-size:30px bold;">PIN Change</h3>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="inputAddress" class="form-label">Card Number</label>
+                        <input type="text" class="form-control" name="card_num" placeholder="" value="{{query.atm_number}}" readonly>
+                    </div>
+                    <div class="col-6 mt-3">
+                        <label for="inputAddress" class="form-label">Card Holder Name</label>
+                        <input type="text" class="form-control" id="" placeholder="" value="{{query.full_name}}" readonly>
+                    </div>
+
+                    <div class="col-md-3">
+
+                    </div>
+                    <div class="col-md-3 mt-2 text-center">
+                        <label for="inputPassword4" class="form-label">OLD PIN</label>
+                        <input type="number" class="form-control text-center" id="" name="atm_pin" style="appearance: none;">
+                    </div>
+                    <div class="col-md-3 mt-2 text-center">
+                        <label for="inputPassword4" class="form-label">Confirm Old PIN</label>
+                        <input type="number" class="form-control text-center" id="inputPassword4">
+                    </div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6 text-center mt-3">
+                        <label for="inputEmail4" class="form-label">Enter New PIN</label>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control text-center" name="new_pin" placeholder="" aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn btn-success" id="" onclick="ran();"><i class="fas fa-random"></i></button>
+                        </div>
+                    </div>
+
+                    <div class="col-md-3"></div>
+                    <div class="col-md-12 text-center mt-3">
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- -------------Account details ------------------- -->
+    <div class="middle_section_account" id="middle_section_account" style="visibility:hidden; margin-top: 5%;">
+        <div class="emp-profile">
+            <form method="post">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="profile-img">
+
+                            <img src="{{ url_for('static', filename=query.photo) }}" alt="user" />
+
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="profile-head">
+                            <h5>
+                                {{query.full_name}}
+                            </h5>
+
+                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Account
+                                        Details
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-0 p-0">
+                    <div class="col-md-4 p-0">
+                        <div class="profile-work">
+                            <p style="font-size:16px;">{{query.full_name}}</p>
+                            <p style="font-size:16px;">{{query.date_of_birth}}</p>
+                            <p style="font-size:16px;">+91&nbsp;{{query.mobile_number}}</p>
+                            <p style="font-size:16px;">{{query.email}}</p>
+
+
+                        </div>
+                    </div>
+                    <div class="col-md-8" style="margin-top:-5%;overflow: hidden; ">
+                        <div class="tab-content profile-tab" id="myTabContent">
+                            <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                <div class="row mt-0">
+                                    <div class="col-md-4">
+                                        <label>Father's Name</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{query.father_name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-4">
+                                        <label>Mother's Name</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{query.mother_name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-4">
+                                        <label>Gender</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{query.gender}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-4">
+                                        <label>Maritial Status</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{query.marital_status}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-4">
+                                        <label>Pan Number</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{query.pan_number}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-4">
+                                        <label>PIN Code</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <p>{{query.pin_code}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                <div class="row mt-0">
+                                    <div class="col-md-6">
+                                        <label>Account Number</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{query.account_number}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-6">
+                                        <label>Branch</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{query.branch_name}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-6">
+                                        <label>Ifsc Code</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{query.ifsc_code}}</p>
+                                    </div>
+                                </div>
+
+                                <div class="row mt-0">
+                                    <div class="col-md-6">
+                                        <label>Atm Number</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{query.atm_number}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-6">
+                                        <label>CVV</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{query.cvv}}</p>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div class="col-md-6">
+                                        <label>Expiry date</label>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <p>{{query.expiry_date}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ------------- fund transfer --------------- -->
+    <div class="middle_section_fund_transfer" id="middle_section_fund_transfer" style="visibility:hidden;">
+        <form action="/fund_transfer" method="POST" class="fund_transfer_form">
+            <div class="row" style="padding: 4% 15%; color: white;">
+                <div class="col-md-12 text-center">
+                    <h3 style="color:white; font-size:30px bold;">Fund Transfer</h3>
+                </div>
+                <div class="col-md-6">
+                    <label for="" class="form-label">From account</label>
+                    <input type="text" class="form-control" name="acc_number_fund" id="" placeholder="" value="{{query.account_number}}" readonly>
+                </div>
+                <div class="col-md-6">
+                    <label for="inputPassword4" class="form-label">To Account</label>
+
+                    <input class="form-control" list="datalistOptions" id="exampleDataList" name="acc_number_to" placeholder="Type to search...">
+                    <datalist id="datalistOptions">
+                        {% for user_account in all_data %}
+                        <option value="{{user_account.account_number}}">
+                            {% endfor %}
+                    </datalist>
+                </div>
+
+                <div class="col-md-3">
+
+                </div>
+
+                <div class="col-md-6 text-center mt-3">
+                    <label for="" class="form-label">Amounts</label>
+                    <input type="number" class="form-control" name="transfer_ammount" id="">
+                </div>
+                <div class="col-md-3">
+
+                </div>
+
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-3 mt-2 text-center">
+                    <label for="inputPassword4" class="form-label">PIN</label>
+                    <input type="password" class="form-control" id="" name="atm_pin_fund" style="appearance: none;">
+                </div>
+                <div class="col-md-3 mt-2 text-center">
+                    <label for="inputPassword4" class="form-label">Confirm PIN</label>
+                    <input type="password" class="form-control" id="inputPassword4">
+                </div>
+                <div class="col-md-12 text-center mt-3">
+                    <button type="submit" class="btn btn-primary">Transfer Ammount</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <!-- -----------bottom section -------------------- -->
+    <div class="bottom_section">
+        <div class="home_navigation">
+            <form action="/"><button id="logout_text">Log Out</button></form>
+        </div>
+    </div>
+    <!-- --------------end Bottom section --------------- -->
+    </div>
+<!-- -------------right side bar --------------- -->
+    <div class="side_right_div">
+    <div class="side_right_div_content">
+        <div class="menu" id="menu5">
+            <div class="card-body">
+                <i class="fas fa-cogs"></i>
+                <h5 class="card-title">SETTINGS</h5>
+
+            </div>
+        </div>
+
+        <div class="menu" id="menu6">
+            <div class="card-body">
+                <i class="fas fa-tools"></i>
+                <h5 class="card-title">TOOLS</h5>
+
+            </div>
+        </div>
+        <div class="menu" id="menu7">
+            <button style="border:none; background: transparent; padding: 0;">
+                <div class="theme_menu_toggle" id="theme_menu_toggle">
+                    <!--  -->
+                    <div class="card-body">
+                        <i class="fab fa-ethereum"></i>
+                        <h5 class="card-title" id="themes_text">THEMES</h5>
+
+                    </div>
+                    <div class="theme_toggle" id="theme_toggle" onclick="theme_toggle()">
+
+                    </div>
+
+                    <li style="--i:0"><a onclick="theme('dark');" style="background:#1d1e22;border: 3px solid white; "></a></li>
+                    <li style="--i:1"> <a onclick="theme('red');" style="background:#c5000a; border: 3px solid white;"></a></li>
+                    <li style="--i:2"> </li>
+                    <li style="--i:3"> <a onclick="theme('blue');" style="background:#0070f8;border: 3px solid white;"></a></li>
+                    <!-- <li style="--i:4"> <a href=""><i class="fas fa-om"></i></li></a> -->
+
+                </div>
+            </button>
+
+        </div>
+        <div class="menu" id="menu8">
+            <div class="card-body">
+                <i class="far fa-times-circle"></i>
+                <h5 class="card-title" id="cancel_text">CANCEL</h5>
+
+            </div>
+        </div>
+    </div>
+    </div>
+
+</div>
+
+
+{% endblock body %}

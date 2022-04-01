@@ -1,4 +1,195 @@
 body{
-    background-color: gray;
-    opacity: 1;
+    min-height: 100%;
+    background: #000046;
+    /* background: -webkit-linear-gradient(to top, #002569, #099ffe);  */
+    background: linear-gradient(to left, #336cd4, #099ffe, #336cd4);
+   
 }
+html {
+  height: 100%;
+}
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+.container-fluid{
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    margin: auto;
+}
+/* brand design */
+.brand_text{
+  position: absolute;
+  margin: 40px;
+}
+.brand_text h2{
+  color:red;
+  font-weight: bold;
+  text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
+}
+.login_div{
+    height: 70vh;
+    position: relative;
+    visibility: visible;
+}
+.admin_form{
+  height: 70vh;
+  width: auto;
+  visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 50%;
+}
+.login_div .face img, .admin_form .face img{
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -230%);
+
+}
+.login_div .login_content, .admin_form .login_content{
+  background-color: transparent;
+    width: 500px;
+    height: auto;
+    top: 35%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -25%);
+    justify-content: center;
+    align-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 15px;
+    padding: 20px;
+    overflow: hidden;
+    padding-top: 80px;
+    
+}
+.login_div .login_content h2, .admin_form .login_content h2{
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px black, 0 0 1em blue, 0 0 0.2em blue;
+    margin-bottom: 30px;
+    margin-top: 0px;
+}
+
+.login_div .login_content form, .admin_form .login_content form{
+  width: 300PX;
+  justify-content: center;
+    align-content: center;
+    /* outline: 2px solid black; */
+}
+.login_div .login_content form .form-outline label, .admin_form .login_content form .form-outline label{
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 1px;
+}
+.login_div .login_content form .form-outline input, .admin_form .login_content form .form-outline input{
+  color: black;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+#form1Example2{
+text-align: center;
+}
+.cont {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+  }
+
+.btn1 {
+  
+    box-sizing: border-box;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    background-color: transparent;
+    border: 1px solid #e74c3c;
+    border-radius: 0.6em;
+    color: #e74c3c;
+    cursor: pointer;
+   
+    -webkit-align-self: center;
+        -ms-flex-item-align: center;
+            align-self: center;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1;
+    margin: 20px;
+    padding: 1.2em 2.8em;
+    text-decoration: none;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    height: 100px;
+    width: 200px;
+  }
+
+  .btn:hover, .btn:focus {
+    color: #fff;
+    outline: 0;
+  }
+  .third {
+    border-color: #3498db;
+    color: #fff;
+    box-shadow: 0 0 40px 40px #3498db inset, 0 0 0 0 #3498db;
+    -webkit-transition: all 150ms ease-in-out;
+    transition: all 150ms ease-in-out;
+  }
+  .third:hover {
+    box-shadow: 0 0 10px 0 #3498db inset, 0 0 10px 4px #3498db;
+  }
+
+
+  /* submit button design */
+  
+  .submit_div{
+    display: flex;
+    margin: 20px;
+  }  
+  
+  .button {
+    position: relative;
+    display: block;
+    width: 200px;
+    height: 36px;
+    border-radius: 18px;
+    background-color: #1c89ff;
+    border: solid 1px transparent;
+    color: #fff;
+    font-size: 18px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: all .1s ease-in-out;
+  }
+  .button i{
+    padding-left: 10px;
+  }
+    .button:hover {
+      background-color: transparent;
+      border-color: #fff;
+      transition: all .1s ease-in-out;
+    }
+    
+  
+  
+    body {font-family: Arial, Helvetica, sans-serif;}
+    * {box-sizing: border-box;}
+    
+    
+    /* The popup form - hidden by default */

@@ -1,0 +1,244 @@
+
+body,
+.wrapper {
+    min-height: 100vh;
+}
+
+a {
+    color: #1DC7EA;
+}
+
+
+.margin-top {
+    margin-top: 50px;
+}
+
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 260px;
+    font-weight: 200;
+    transition: .5s;
+}
+
+.sidebar .sidebar-wrapper {
+    min-height: 100%;
+    width: 260px;
+    padding-bottom: 100px;
+}
+.sidebar.active{
+    width: 50px;
+    overflow: hidden;
+}
+
+.sidebar .logo {
+    padding: 10px 0px 9px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    z-index: 4;
+}
+
+.sidebar .logo p {
+    float: left;
+    font-size: 20px;
+    margin: 10px 0px;
+    color: #FFFFFF;
+    line-height: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.sidebar .logo .simple-text {
+    text-transform: uppercase;
+    padding: 5px 0px;
+    display: block;
+    font-size: 18px;
+    color: #FFFFFF;
+    text-align: left;
+    font-weight: 400;
+    line-height: 30px;
+}
+
+/* .sidebar .logo-tim {
+    border-radius: 50%;
+    border: 1px solid #333;
+    display: block;
+    height: 61px;
+    width: 61px;
+    float: left;
+    overflow: hidden;
+} */
+
+.sidebar .logo-tim img {
+    width: 60px;
+    height: 60px;
+}
+
+.sidebar .nav {
+    margin-top: 20px;
+    float: none;
+    display: block;
+}
+
+.sidebar .nav li .nav-link {
+    color: #FFFFFF;
+    margin: 5px 0px;
+    opacity: .86;
+    border-radius: 4px;
+    display: block;
+    padding: 10px 10px;
+}
+
+.sidebar .nav li .nav-link:hover {
+    background: rgba(255, 255, 255, 0.13);
+    opacity: 1;
+}
+
+.sidebar .nav li .nav-link p {
+    margin: 0;
+    line-height: 31px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-flex;
+}
+
+.sidebar .nav li .nav-link i{
+    font-size: 24px;
+    margin-right: 15px;
+    width: 30px;
+    text-align: center;
+    vertical-align: middle;
+    float: left;
+}
+
+.sidebar .nav li:hover .nav-link {
+    background: rgba(255, 255, 255, 0.13);
+    opacity: 1;
+}
+
+.sidebar .nav li.active .nav-link {
+    color: #FFFFFF;
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.23);
+}
+
+.sidebar .nav li.separator{
+    margin: 15px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .nav li.separator+.nav-item{
+    margin-top: 31px;
+}
+
+.sidebar .nav .caret{
+    margin-top: 13px;
+    position: absolute;
+    right: 30px;
+}
+
+.sidebar .nav .active-pro {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+
+.sidebar .nav .active-pro a{
+    color: #FFFFFF !important;
+}
+
+.sidebar .nav .nav-link {
+    color: #FFFFFF;
+    margin: 5px 15px;
+    opacity: .86;
+    border-radius: 4px;
+    text-transform: uppercase;
+    line-height: 30px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.sidebar .logo {
+    padding: 10px 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.sidebar .logo p {
+    float: left;
+    font-size: 20px;
+    margin: 10px 10px;
+    color: #FFFFFF;
+    line-height: 20px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
+.sidebar .logo-tim img {
+    width: 60px;
+    height: 60px;
+}
+
+
+.sidebar{
+    background: #1F77D0;
+    background: -moz-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1F77D0), color-stop(100%, #533ce1));
+    background: -webkit-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+    background: -o-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+    background: -ms-linear-gradient(top, #1F77D0 0%, #533ce1 100%);
+    background: linear-gradient(to bottom, #1F77D0 0%, #533ce1 100%);
+    background-size: 150% 150%;
+   
+}
+
+
+.main-panel {
+    background: rgba(203, 203, 210, 0.15);
+    position: relative;
+    float: right;
+    width: calc(100% - 260px);
+    min-height: 100%;
+    transition: .5s;
+}
+.main-panel.active{
+    width: calc(100% - 50px);
+}
+.main-panel>.content {
+    padding: 30px 15px;
+    min-height: calc(100% - 123px);
+}
+
+.main-panel .navbar {
+    margin-bottom: 0;
+}
+
+
+
+@media print{
+    body * {
+        visibility: hidden;
+    }
+
+    .print-container, .print-container * {
+        visibility: visible;
+        
+    }
+
+    .print-container{
+        
+        margin-left: -350px;
+        margin-top: -100px;
+        margin-right: -70px;
+    }
+}
+
+.container-fluid i{
+    margin: 10px 20px;
+    font-size: 24px;
+    cursor: pointer;
+}
+nav_toggle.active i{
+color: red;
+}

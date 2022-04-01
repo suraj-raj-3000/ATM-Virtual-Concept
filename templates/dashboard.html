@@ -1,0 +1,179 @@
+{% extends 'admin_static.html' %} {% block dash %} {% with messages = get_flashed_messages(with_categories=true) %} {% if
+messages %} {% for category, message in messages %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+<div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" style="color:black; ">
+    <center><span>{{ message }}</span></center>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close" style="float: right; margin-top:-2%;">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+{% endfor %} {% endif %} {% endwith %}
+
+<div class="main-panel" id="main_panel">
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg " color-on-scroll="500">
+        <div class="container-fluid">
+            <div>
+                    <i class="fas fa-bars" id="i_toggle" onclick="toggle();"></i>
+            </div>
+           
+            <a class="navbar-brand" href="#pablo"> Dashboard </a>
+            <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <ul class="nav navbar-nav mr-auto">
+                   
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/logout">
+                            <span class="no-icon">Log out</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- End Navbar -->
+    <div class="content">
+        <div class="container-fluid">
+
+            <div class="row " style="justify-content:center; ">
+                <div class="col-md-3" style="margin:0px 20px; padding:40px 40px; border-radius:20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+
+                    <div class="row text-center">
+                        <div class="col-md-8">
+                            <h4>{{ varriable2 }}</h4>
+                            <span>Total User</span>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-eye " style="font-size:50px;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin:0px 20px; padding:40px 40px; border-radius:20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+
+                    <div class="row text-center">
+                        <div class="col-md-8">
+                            <h4>{{ varriable2 }}</h4>
+                            <span>Total Account</span>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-university " style="font-size:50px;"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3" style="margin:0px 20px; padding:40px 40px; border-radius:20px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+
+                    <div class="row text-center">
+                        <div class="col-md-8">
+                            <h4>{{ varriable1 }}</h4>
+                            <span>Total Ammount</span>
+                        </div>
+                        <div class="col-md-4 text-center">
+                            <i class="fas fa-sack-dollar" style="font-size:50px;"></i>
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+            <!-- <div class="row"> 
+                    <div class="col-md-4">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">Email Statistics</h4>
+                                <p class="card-category">Last Campaign Performance</p>
+                            </div>
+                            <div class="card-body ">
+                                <div id="chartPreferences" class="ct-chart ct-perfect-fourth"></div>
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> Open
+                                    <i class="fa fa-circle text-danger"></i> Bounce
+                                    <i class="fa fa-circle text-warning"></i> Unsubscribe
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-clock-o"></i> Campaign sent 2 days ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card ">
+                            <div class="card-header ">
+                                <h4 class="card-title">Users Behavior</h4>
+                                <p class="card-category">24 Hours performance</p>
+                            </div>
+                            <div class="card-body ">
+                                <div id="chartHours" class="ct-chart"></div>
+                            </div>
+                            <div class="card-footer ">
+                                <div class="legend">
+                                    <i class="fa fa-circle text-info"></i> Open
+                                    <i class="fa fa-circle text-danger"></i> Click
+                                    <i class="fa fa-circle text-warning"></i> Click Second Time
+                                </div>
+                                <hr>
+                                <div class="stats">
+                                    <i class="fa fa-history"></i> Updated 3 minutes ago
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+            <div class="row mt-5">
+                <div class="col-md-8">
+                    <h5>Recent Bant Account</h5>
+                    <div class="card-body table-full-width table-responsive">
+                        <table class="table table-hover table-striped">
+                            <thead >
+                                <th>Sno</th>
+                                <th>Name</th>
+                                <th>Account No</th>
+                                <th>Account Balance</th>
+                                <th>Atm No</th>
+                            </thead>
+                            <tbody >
+                                {% for user_account in all_user %}
+                                <tr style="height:60px;" >
+                                    <td>{{loop.index}}</td>
+                                    <td>{{user_account.full_name}}</td>
+                                    <td>{{user_account.account_number}}</td>
+                                    <td>{{user_account.account_balance}}</td>
+                                    <td>{{user_account.atm_number}}</td>
+                                </tr>
+                                {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <ol class="list-group list-group-numbered">
+                        <h5 class="mb-5">Recent Customer</h5>
+                        {% for user_account in all_user %}
+                        <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold">{{user_account.full_name}}</div>
+                                {{user_account.account_number}}
+                            </div>
+                            <span class="badge bg-primary rounded-pill">{{user_account.account_balance}}.00 $</span>
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+
+    sidebar_toggle = document.getElementById("nav_toggle");
+    main_panel = document.getElementById("main_panel");
+    function toggle() {
+        sidebar_toggle.classList.toggle('active');
+        main_panel.classList.toggle('active');
+}
+</script>
+{% endblock dash %}

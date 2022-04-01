@@ -1,0 +1,354 @@
+{% extends 'static.html' %} {% block title %} Create User {% endblock title %} {% block body %}
+<link rel="stylesheet" href=" {{ url_for('static', filename='css/crt_user.css') }} ">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+  crossorigin="anonymous">
+  <script src=" {{ url_for('static', filename='js/create_account.js') }} "></script>
+<div class="container-fluid mt-0 pt-0">
+  <div class="brand_text">
+    <h2>Citi Bank :)(:</h2>
+  </div>
+  <div class="container">
+    <div class="section mt-5">
+      <div class="section-one">       
+          <h2 class="text-center" style="font-weight:bold; text-decoration: underline;">Online Account Opening</h2>
+      </div>
+      <form name="create_form" method="POST" action="/create_account" onsubmit="return validateForm()" enctype="multipart/form-data">
+        <!-- onsubmit="return validateForm()" -->
+        <div class="row align-items-center">
+          <div class="col-md-12 text-center">
+            <label for="col-md-11">Scheme Type : </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12 text-center">
+
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="account_radio_btn" id="inlineRadio1" value="Saving Account" checked>
+              <label class="form-check-label" for="inlineRadio1">Saving Account</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="account_radio_btn" id="inlineRadio2" value="Current Account">
+              <label class="form-check-label" for="inlineRadio2">Current Account</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="account_radio_btn" id="inlineRadio3" value="Pension Account">
+              <label class="form-check-label" for="inlineRadio3">Pension Account</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-auto">
+            <label for="" class="col-form-label">Branch :-</label>
+          </div>
+          <div class="col-md-auto">
+            <select id="select_branch" class="select_branch form-select" name="select_branch" onchange="populate(this.id,'ifsc_code_box')">
+              <!-- onchange="populate(this.id,'ifsc_code_box')" -->
+                <option selected>select</option>
+                <option >Patna</option>
+              <option>Jamui</option>
+            </select>
+            <span id="select_branch_msg" style="color:red;"> </span>
+          </div>
+          <div class="col-md-auto">
+              <label for="inputPassword6" class="col-form-label">Ifsc Code :-</label>
+            </div>
+          <div class="col-md-2">
+            <input type="text" id="ifsc_code_box" name="ifsc_code_box" class="form-control" readonly>
+          </div>
+          <div class="col-md-auto">
+              <label for="account_no" class="col-form-label">Account Number :-</label>
+            </div>
+          <div class="col-md-3">
+            <input type="text" id="account_no" name="account_no" class="form-control" readonly >
+          </div>
+        </div>
+<hr >
+        <div class="row">
+            <div class="col-md-2">
+                <label for="inputPassword6" class="col-form-label">ATM Number :-</label>
+              </div>
+            <div class="col-md-3">
+              <input type="text" class="form-control" name="atm_no" placeholder="" readonly>
+            </div>
+            <div class="col-md-auto">
+                <label for="inputPassword6" class="col-form-label">CVV</label>
+              </div>
+            <div class="col-md-2">
+              <input type="text" class="form-control" name="cvv" placeholder="" readonly>
+            </div>
+            <div class="col-md-auto">
+                <label for="inputPassword6" class="col-form-label">Expiry Date :-</label>
+              </div>
+            <div class="col-md-2">
+              <input type="text" id="showDate" name="showDate" class="form-control" readonly>
+            </div>
+        </div>
+
+        <div class="form-group pt-5">
+          <div class="h5" style="border-bottom:2px solid black; font-weight: bold;">Applicant Details :</div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-2">
+            <select class="form-select" aria-label="Disabled select example" name="title">
+              <option value="Mr." selected>Mr.</option>
+              <option value="Ms.">Ms.</option>
+            </select>
+          </div>
+          <div class="col-md-8 ">
+            <input type="text" class="form-control" id="fname" name="fname" placeholder="Full Name *" onfocusout="stringvalidation(this.name,'name_error');">
+            <span id="name_error" style="color:red;"></span>
+          </div>
+
+          <div class="col-md-2" style="position:absolute;left: 80%;">
+            <img id="output" src="{{url_for('static', filename='image/scanner.gif')}}" alt="" style="height:140px; width:120px;">
+
+          </div>
+        </div>
+
+        <div class="row mt-2">
+          <div class="col-md-5">
+            <input type="text" class="form-control" id="" name="father_name" placeholder="Father's Name *" onfocusout="stringvalidation(this.name,'father_name_error');">
+            <span id="father_name_error"style="color:red;"></span>
+          </div>
+
+          <div class="col-md-5">
+            <input type="text" class="form-control" id="" name="mother_name" placeholder="Mother's Name *" onfocusout="stringvalidation(this.name,'mother_name_error');">
+            <span id="mother_name_error"style="color:red;"></span>
+          </div>
+
+        </div>
+        <div class="row">
+
+          <div class="col-md-5">
+            <label for="">Gender :- * </label>
+            <div class="form-check form-check-inline ">
+              <input class="form-check-input" type="radio" name="gender_radio_btn" id="" value="Male">
+              <label class="form-check-label" for="inlineRadio1">Male</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="gender_radio_btn" id="" value="Female">
+              <label class="form-check-label" for="inlineRadio2">Female</label>
+            </div>
+            <br> <span id="gender_error"style="color:red;"></span>
+          </div>
+
+          <div class="col-md-5 ">
+
+            <label for="">Status :- * </label>
+            <div class="form-check form-check-inline ">
+              <input class="form-check-input" type="radio" name="married_radio_btn" id="married_radio_btn" value="Married">
+              <label class="form-check-label" for="inlineRadio1">Married</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="married_radio_btn" id="" value="Unmarried">
+              <label class="form-check-label" for="inlineRadio2">Unmarried</label>
+            </div>
+            <br> <span id="marrage_error"style="color:red;"></span>
+          </div>
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+            <input type="number" class="form-control" id="phone_number" name="phone_number" placeholder="Mobile Number *" onfocusout="validatenumber();">
+            <span id="phone_number_error"style="color:red;"></span>
+          </div>
+
+          <div class="col-md-4">
+            <input type="text" class="form-control" id="pan_number" name="pan_number" placeholder="Pan Number *" onfocusout="stringvalidation(this.name,'pan_number_error');" style="text-transform:uppercase;" >
+            <span id="pan_number_error"style="color:red;"></span>
+          </div>
+
+          <div class="form-group col-md-4 text-center">
+
+            <div class="row m-0 p-0">
+              <div class="col-md-4 text-center"><label for="form-control">D.O.B :*</label></div>
+              <div class="col-md-8"><input type="date" name="date_of_birth" placeholder="" class="form-control" data-date-format="mm/dd/yyyy"></div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <input type="email" class="form-control" id="" name="email" placeholder="Email *" onfocusout="stringvalidation(this.name,'email_error');">
+            <span id="email_error"style="color:red;"></span>
+          </div>
+          <div class="col-md-3">
+            <select id="id_proof" class="form-select" name="id_proof" onfocusout="stringvalidation(this.name,'id_proof_error');">
+              <option selected>Identity Proof *</option>
+              <option>Adhar Card</option>
+              <option>Pan Card</option>
+              <option>Voter ID Card</option>
+              <option>Driving Licensese</option>
+            </select>
+            <span id="id_proof_error"style="color:red;"></span>
+
+          </div>
+
+          <div class="col-md-3">
+            <input type="text" class="form-control" id="" name="id_proof_number" placeholder="Id Proof Number" onfocusout="stringvalidation(this.name,'id_proof_number_error');">
+            <span id="id_proof_number_error"style="color:red;"></span>
+          </div>
+
+        </div>
+        <div class="row">
+          <div class="col col-md-12">
+            <input type="text" class="form-control" id="inputAddress" name="address" placeholder="Address .. * " onfocusout="stringvalidation(this.name,'address_error');">
+            <span id="address_error"style="color:red;"></span>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-4">
+            <select id="inputState" class="form-select" name="inputState" onfocusout="stringvalidation(this.name,'state_error');">
+              <option selected>Select State .. *</option>
+              <option>Andhra Pradesh</option>
+              <option>Arunachal Pradesh</option>
+              <option>Assam</option>
+              <option>Bihar</option>
+              <option>Chhattisgarh</option>
+              <option>Delhi</option>
+              <option>Goa</option>
+              <option>Gujarat</option>
+              <option>Haryana</option>
+              <option>Himachal Pradesh</option>
+              <option>Jharkhand</option>
+              <option>Karnataka</option>
+              <option>Kerala</option>
+              <option>Madhya Pradesh</option>
+              <option>Maharashtra</option>
+              <option>Manipur</option>
+              <option>Meghalaya</option>
+              <option>Mizoram</option>
+              <option>Nagaland</option>
+              <option>Odisha</option>
+              <option>Punjab</option>
+              <option>Rajasthan</option>
+              <option>Sikkim</option>
+              <option>Tamil Nadu</option>
+              <option>Telangana</option>
+              <option>Tripura</option>
+              <option>Uttarakhand</option>
+              <option>Uttar Pradesh</option>
+              <option>West Bengal</option>
+            </select>
+            <span id="state_error"style="color:red;"></span>
+
+          </div>
+          <div class="col-md-4">
+            <input type="text" class="form-control" id="" name="dist" placeholder="District *"  onfocusout="stringvalidation(this.name,'dist_error');">
+            <span id="dist_error"style="color:red;"></span>
+          </div>
+
+          <div class="col-md-4">
+            <input type="text" class="form-control" id="" name="pin_code" placeholder="PIN Code"  onfocusout="stringvalidation(this.name,'pin_code_error');">
+            <span id="pin_code_error"style="color:red;"></span>
+          </div>
+
+        </div>
+
+        <div class="row mt-2">
+
+          <div class="col-md-8">
+            <div class="custom-file">
+                  <input type="file" class="form-control" id="user_photo" name="user_photo" onchange="loadFile(event)">
+              <label class="form-label" for="user_photo">Upload your photo *</label>
+              
+              <span style="color:red;"> photo must be under (.png, .jpg) 100KB.</span>
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group mt-3">
+          <div class="h5" style="border-bottom:2px solid black; font-weight: bold;">Nominee Details :</div>
+        </div>
+
+        <div class="col col-md-12 text-center">
+          <label for="">Nominee Required * : </label>
+          <div class="form-check form-check-inline ">
+            <input class="form-check-input" type="radio" name="Nominee_radio_btn" id="Nominee_radio_btn_yes" value="yes" checked onclick="nomi_visi_yes();">
+            <label class="form-check-label" for="inlineRadio5">Yes</label>
+          </div>
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="Nominee_radio_btn" id="Nominee_radio_btn" value="no" onclick="nomi_visi_false();">
+            <label class="form-check-label" for="inlineRadio6">No</label>
+          </div>
+        </div>
+
+        <div class="row" id="nomi_details_box">
+          <div class="col-md-4">
+            <input type="text" class="form-control" id="nomi_name" name="nomi_name" placeholder="Full Name *"  onfocusout="stringvalidation(this.name,'nomi_name_error');">
+            <span id="nomi_name_error"style="color:red;"></span>
+          </div>
+          <div class="col-md-4">
+
+            <select id="select_relation" class="form-control" name="select_relation">
+              <option selected>Select Realtion *</option>
+              <option>Father</option>
+              <option>Mother</option>
+              <option>Son</option>
+              <option>Daughter</option>
+              <option>Sister</option>
+              <option>Brother</option>
+              <option>Other</option>
+            </select>
+
+          </div>
+          <div class="form-group col-md-4 text-center">
+            <div class="row">
+              <div class="col-md-4 text-center"><label for="form-control" name=>D.O.B *</label></div>
+              <div class="col-md-8"><input type="date" class="form-control" name="nimi_dob" id="nimi_dob" placeholder="" data-date-format="mm/dd/yyyy"></div>
+
+            </div>
+          </div>
+        </div>
+<div class="row mt-0" id="nomi_address_details_box">
+    <div class="col-md-12">
+        <input type="text" class="form-control" id="" name="nomi_address" placeholder="Address .. * "  onfocusout="stringvalidation(this.name,'nomi_address_error');">
+        <span id="nomi_address_error"style="color:red;"></span>
+      </div>
+</div>
+        <div class="row" id="term_condition">
+          <div class="col-md-12">
+              <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                  <label class="form-check-label" for="flexCheckChecked">
+                      To create a Bank Account, you’ll need to agree to the Terms of Services.
+                  </label>
+                </div>
+              </div>
+        </div>
+        <div class="row mt-5">
+        
+            <div class=" col col-md-2 text-center">
+              
+            </div>
+            <div class=" col col-md-8 text-center"> <button type="submit" class="btn btn-success" >Submit Application</button> </div>
+            
+            
+          </div>
+     
+        </form>
+        <div class="row">
+          <div class="col">
+              <form action="/"><button hre class="btn btn-danger">Back</button></form>
+          </div>
+          <div class="col text-right">
+              <button class="btn btn-primary">Reset</button>
+          </div>
+        </div>
+        
+     
+    </div>
+
+  </div>
+
+</div>
+
+
+{% endblock body %}

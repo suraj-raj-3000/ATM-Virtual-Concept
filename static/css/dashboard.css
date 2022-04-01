@@ -1,0 +1,25 @@
+/* body{
+    margin: 0;
+    padding: 0;
+}
+.left_side_panel{
+    background-color: aqua;
+    width: 15rem;
+    height: 100vh;
+    position: sticky;
+    background-color: #956bd6;
+    position: fixed;
+}
+.main_container .left_side_panel .nav{
+    padding: 20px;
+}
+.main_container .left_side_panel .nav .nav-link{
+    margin-top: 20px;
+    color: white;
+    font-weight: bold;
+    border-radius: 10px;
+    
+}
+.main_container .left_side_panel .nav .nav-link:hover{
+    background-color: #ab8ddd;
+}  */
